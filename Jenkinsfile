@@ -31,6 +31,7 @@ pipeline {
                 stage('Test') {
                     steps {
                         sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME which rstudio'
+                        sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME which ngram'
                         sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME R -q -e "getRversion() >= \\"4.1.3\\"" | tee /dev/stderr | grep -q "TRUE"'
                         sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME python -c "import numpy;import gensim;import sklearn; sklearn.show_versions();import pytest;from prettytable import PrettyTable;import requests;import matplotlib;import nltk;import pandas;import arpa;import morfessor;"'
 
