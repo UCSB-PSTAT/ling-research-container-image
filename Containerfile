@@ -31,6 +31,8 @@ RUN pip install gensim \
     arpa \
     morfessor
 
+RUN R -e "install.packages(c('bayestestR', 'blockcluster', 'ca', 'CCA', 'cowplot', 'DirichletReg', 'doParallel', 'ellipse', 'factoextra', 'FactoMineR', 'ggalluvial', 'GGally', 'ggbreak', 'ggfittext', 'ggforce', 'ggmosaic', 'ggpattern', 'ggplot2', 'ggrepel', 'ggsunburst', 'ggthemes', 'ggVennDiagram', 'ggwordcloud', 'glossr', 'keras', 'lmerTest', 'mclust', 'ordinal', 'plotly', 'polr', 'pvclust', 'reticulate', 'rezonateR', 'rjson', 'see', 'spacyr', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+
 USER $NB_USER
 
 # Set environment variables for SRILM
