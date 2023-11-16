@@ -41,7 +41,7 @@ RUN pip install torch torchvision torchaudio --index-url https://download.pytorc
 
 RUN R -e "install.packages(c('bayestestR', 'blockcluster', 'ca', 'CCA', 'cowplot', 'devtools', 'DirichletReg', 'doParallel', 'ellipse', 'factoextra', 'FactoMineR', 'ggalluvial', 'GGally', 'ggbreak', 'ggfittext', 'ggforce', 'ggmosaic', 'ggpattern', 'ggplot2', 'ggrepel', 'ggthemes', 'ggVennDiagram', 'ggwordcloud', 'glossr', 'keras', 'lmerTest', 'mclust', 'ordinal', 'plotly', 'pvclust', 'reticulate', 'sunburstR', 'rjson', 'see', 'spacyr', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
-RUN R -e "library(devtools); install_github('rezonators/rezonateR'. Ncpus = parallel::detectCores())"
+RUN R -e "library(devtools); install_github('rezonators/rezonateR', Ncpus = parallel::detectCores())"
 
 USER $NB_USER
 
