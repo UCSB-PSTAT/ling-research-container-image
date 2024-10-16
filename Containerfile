@@ -23,21 +23,23 @@ RUN wget https://sjtodd.github.io/ling110/srilm-1.7.3.tar.gz && \
     make MAKE_PIC=yes World && \
     make cleanest 
 
-RUN pip install gensim \
+RUN mamba install -y \
+    gensim \
     scikit-learn \
     pytest \
-    PTable \
+    ptable \
     nltk \
-    arpa \
     morfessor \
-    tensorflow \
+    pytorch \
+    tensorflow-cpu \
+    torchaudio \
+    torchvision \
     keras \
     spacy \
-    textgrid \
-    tgt
+    textgrid
     
 # Because Pytorch is special:
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+RUN pip install arpa tgt
 
 # Hopefully temporary workaround
 RUN R -e "install.packages('rtkore',repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores()); install.packages('https://cran.r-project.org/src/contrib/Archive/blockcluster/blockcluster_4.5.4.tar.gz', repos=NULL, type='source', Ncpus = parallel::detectCores())"
