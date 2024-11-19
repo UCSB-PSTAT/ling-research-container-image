@@ -12,6 +12,8 @@ RUN apt update && \
         gawk \
         tar \
         make \
+        build-essential \
+        python-dev \
         libopenblas-dev && \
     apt-get clean
 
@@ -24,7 +26,7 @@ RUN wget https://sjtodd.github.io/ling110/srilm-1.7.3.tar.gz && \
     make MAKE_PIC=yes World && \
     make cleanest 
 
-RUN pip install --use-deprecated=backtrack-on-build-failures gensim spacy
+RUN pip install gensim spacy
 
 RUN conda install -y \
     scikit-learn \
