@@ -12,10 +12,13 @@ RUN apt update && \
         gawk \
         tar \
         make \
+        pkg-config \
         cmake \
         build-essential \
         python3-dev \
-        libopenblas-dev && \
+        libopenblas-dev \
+        software-properties-common \
+        lsb-release && \
     apt-get clean
 
 #-- Install SRILM
