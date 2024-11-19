@@ -23,10 +23,9 @@ RUN wget https://sjtodd.github.io/ling110/srilm-1.7.3.tar.gz && \
     make MAKE_PIC=yes World && \
     make cleanest 
 
-RUN pip install spacy
+RUN pip install gensim spacy
 
 RUN conda install -y \
-    gensim \
     scikit-learn \
     pytest \
     ptable \
