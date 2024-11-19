@@ -13,7 +13,7 @@ RUN apt update && \
         tar \
         make \
         build-essential \
-        python-dev \
+        python3-dev \
         libopenblas-dev && \
     apt-get clean
 
