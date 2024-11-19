@@ -11,7 +11,8 @@ RUN apt update && \
         tcsh \
         gawk \
         tar \
-        make && \
+        make \
+        libopenblas64-dev && \
     apt-get clean
 
 #-- Install SRILM
