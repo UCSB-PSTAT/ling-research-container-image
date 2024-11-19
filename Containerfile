@@ -12,6 +12,7 @@ RUN apt update && \
         gawk \
         tar \
         make \
+        cmake \
         build-essential \
         python3-dev \
         libopenblas-dev && \
