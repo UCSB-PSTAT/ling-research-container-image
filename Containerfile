@@ -24,7 +24,6 @@ RUN wget https://sjtodd.github.io/ling110/srilm-1.7.3.tar.gz && \
     make cleanest 
 
 RUN mamba install -y \
-    gensim \
     scikit-learn \
     pytest \
     ptable \
@@ -38,8 +37,8 @@ RUN mamba install -y \
     spacy \
     textgrid
     
-# Because Pytorch is special:
-RUN pip install arpa tgt
+# Because some packages are special:
+RUN pip install arpa tgt gensim
 
 # Hopefully temporary workaround
 RUN R -e "install.packages('rtkore',repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores()); install.packages('https://cran.r-project.org/src/contrib/Archive/blockcluster/blockcluster_4.5.4.tar.gz', repos=NULL, type='source', Ncpus = parallel::detectCores())"
