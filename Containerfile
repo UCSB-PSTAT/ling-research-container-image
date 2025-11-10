@@ -23,6 +23,8 @@ RUN wget https://sjtodd.github.io/ling110/srilm-1.7.3.tar.gz && \
     make MAKE_PIC=yes World && \
     make cleanest 
 
+RUN pip install tensorflow-cpu 
+
 RUN mamba install -y \
     scikit-learn \
     pytest \
@@ -30,7 +32,6 @@ RUN mamba install -y \
     nltk \
     morfessor \
     pytorch \
-    tensorflow-cpu \
     torchaudio \
     torchvision \
     keras \
