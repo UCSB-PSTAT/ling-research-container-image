@@ -35,6 +35,7 @@ RUN mamba install -y \
     torchaudio \
     torchvision \
     keras \
+    r-ggmosaic \
     spacy \
     textgrid
     
@@ -44,7 +45,7 @@ RUN pip install arpa tgt gensim
 # Hopefully temporary workaround
 RUN R -e "install.packages('rtkore',repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores()); install.packages('https://cran.r-project.org/src/contrib/Archive/blockcluster/blockcluster_4.5.4.tar.gz', repos=NULL, type='source', Ncpus = parallel::detectCores())"
 
-RUN R -e "install.packages(c('bayestestR', 'ca', 'CCA', 'cowplot', 'devtools', 'DirichletReg', 'doParallel', 'ellipse', 'factoextra', 'FactoMineR', 'ggalluvial', 'GGally', 'ggbreak', 'ggfittext', 'ggforce', 'ggmosaic', 'ggpattern', 'ggplot2', 'ggrepel', 'ggthemes', 'ggVennDiagram', 'ggwordcloud', 'glossr', 'keras', 'lmerTest', 'mclust', 'ordinal', 'plotly', 'pvclust', 'reticulate', 'sunburstR', 'rjson', 'see', 'spacyr', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('bayestestR', 'ca', 'CCA', 'cowplot', 'devtools', 'DirichletReg', 'doParallel', 'ellipse', 'factoextra', 'FactoMineR', 'ggalluvial', 'GGally', 'ggbreak', 'ggfittext', 'ggforce', 'ggpattern', 'ggplot2', 'ggrepel', 'ggthemes', 'ggVennDiagram', 'ggwordcloud', 'glossr', 'keras', 'lmerTest', 'mclust', 'ordinal', 'plotly', 'pvclust', 'reticulate', 'sunburstR', 'rjson', 'see', 'spacyr', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 RUN R -e "library(devtools); install_github('rezonators/rezonateR', Ncpus = parallel::detectCores())"
 
