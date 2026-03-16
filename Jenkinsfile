@@ -38,7 +38,7 @@ pipeline {
                         container('podman') {
                             sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME which rstudio'
                             sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME which ngram'
-                            sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME R -q -e "getRversion() >= \\"4.1.3\\"" | tee /dev/stderr | grep -q "TRUE"'
+                            sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME R -q -e "getRversion() >= \\"4.5.2\\"" | tee /dev/stderr | grep -q "TRUE"'
                             sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME python -c "import numpy;import gensim;import sklearn; sklearn.show_versions();import pytest;from prettytable import PrettyTable;import requests;import matplotlib;import nltk;import pandas;import arpa;import morfessor;import spacy; import torch; import keras; import tensorflow; import tgt; import textgrid;"'
 
                             sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME R -e "library(\"bayestestR\");library(\"blockcluster\");library(\"ca\");library(\"CCA\");library(\"cowplot\");library(\"DirichletReg\");library(\"doParallel\");library(\"ellipse\");library(\"factoextra\");library(\"FactoMineR\");library(\"ggalluvial\");library(\"GGally\");library(\"ggbreak\");library(\"ggfittext\");library(\"ggforce\");library(\"ggmosaic\");library(\"ggplot2\");library(\"ggrepel\");library(\"glossr\");library(\"keras\");library(\"lmerTest\");library(\"mclust\");library(\"ordinal\");library(\"plotly\");library(\"MASS\");library(\"pvclust\");library(\"reticulate\");library(\"rjson\");library(\"see\");library(\"spacyr\");library(\"vowels\");library(\"rezonateR\")"'
@@ -84,10 +84,10 @@ pipeline {
     }
     post {
         success {
-            slackSend(channel: '#infrastructure-build', username: 'jenkins', color: 'good', message: "Build ${env.JOB_NAME} ${env.BUILD_NUMBER} just finished successfull! (<${env.BUILD_URL}|Details>)")
+            slackSend(username: 'jenkins', color: 'good', message: "Build ${env.JOB_NAME} ${env.BUILD_NUMBER} just finished successfull! (<${env.BUILD_URL}|Details>)")
         }
         failure {
-            slackSend(channel: '#infrastructure-build', username: 'jenkins', color: 'danger', message: "Uh Oh! Build ${env.JOB_NAME} ${env.BUILD_NUMBER} had a failure! (<${env.BUILD_URL}|Find out why>).")
+            slackSend(username: 'jenkins', color: 'danger', message: "Uh Oh! Build ${env.JOB_NAME} ${env.BUILD_NUMBER} had a failure! (<${env.BUILD_URL}|Find out why>).")
         }
     }
 }
