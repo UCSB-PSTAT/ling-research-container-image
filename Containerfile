@@ -23,28 +23,62 @@ RUN wget https://sjtodd.github.io/ling110/srilm-1.7.3.tar.gz && \
     make MAKE_PIC=yes World && \
     make cleanest 
 
-RUN pip install tensorflow-cpu 
-
-RUN mamba install -y \
-    scikit-learn \
-    pytest \
-    ptable \
-    nltk \
+RUN mamba install -y -c conda-forge \
+    gensim \
+    keras \
     morfessor \
+    nltk \
+    ptable \
+    pytest \
     pytorch \
+    r-bayestestr \
+    r-ca \
+    r-cca \
+    r-cowplot \
+    r-devtools \
+    r-dirichletreg \
+    r-doparallel \
+    r-ellipse \
+    r-factoextra \
+    r-factominer \
+    r-ggalluvial \
+    r-ggally \
+    r-ggbreak \
+    r-ggfittext \
+    r-ggforce \
+    r-ggmosaic \
+    r-ggpattern \
+    r-ggplot2 \
+    r-ggrepel \
+    r-ggthemes \
+    r-ggvenndiagram \
+    r-ggwordcloud \
+    r-keras \
+    r-lmertest \
+    r-mclust \
+    r-ordinal \
+    r-plotly \
+    r-pvclust \
+    r-reticulate \
+    r-rjson \
+    r-see \
+    r-spacyr \
+    r-sunburstr \
+    r-vowels \
+    scikit-learn \
+    spacy \
+    tensorflow-cpu \
+    textgrid \
+    tgt \
     torchaudio \
     torchvision \
-    keras \
-    r-ggmosaic \
-    spacy \
-    textgrid
+    && mamba clean -afy
     
 # Because some packages are special:
-RUN pip install arpa tgt gensim
+RUN pip install arpa
 
-RUN R -e "install.packages(c('bayestestR', 'ca', 'CCA', 'cowplot', 'devtools', 'DirichletReg', 'doParallel', 'ellipse', 'factoextra', 'FactoMineR', 'ggalluvial', 'GGally', 'ggbreak', 'ggfittext', 'ggforce', 'ggpattern', 'ggplot2', 'ggrepel', 'ggthemes', 'ggVennDiagram', 'ggwordcloud', 'glossr', 'keras', 'lmerTest', 'mclust', 'ordinal', 'plotly', 'pvclust', 'reticulate', 'sunburstR', 'rjson', 'see', 'spacyr', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
-
-RUN R -e "library(devtools); install_github('rezonators/rezonateR', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages('glossr'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())" &&\
+    R -e "library(devtools); pak::pak('rezonators/rezonateR', Ncpus = parallel::detectCores())"
 
 USER $NB_USER
 
