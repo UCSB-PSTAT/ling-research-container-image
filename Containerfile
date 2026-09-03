@@ -69,8 +69,8 @@ RUN mamba install -y -c conda-forge -c bioconda \
 # Because some packages are special:
 RUN pip install arpa tensorflow-cpu
 
-RUN Rscript -e "install.packages(c('askpass', 'CCA', 'factoextra', 'factominer', 'ggmosaic', 'ggpattern', 'glossr', 'lmertest', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())" &&\
-    Rscript -e "pak::pak('rezonators/rezonateR')"
+RUN Rscript -e "install.packages(c('askpass', 'CCA', 'factoextra', 'FactoMineR', 'ggpattern', 'glossr', 'lmerTest', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())" &&\
+    Rscript -e "pak::pak(c('haleyjeppson/ggmosaic', 'rezonators/rezonateR'))"
 
 USER $NB_USER
 
