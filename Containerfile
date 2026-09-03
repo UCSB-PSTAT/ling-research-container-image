@@ -33,7 +33,6 @@ RUN mamba install -y -c conda-forge -c bioconda \
     pytorch \
     r-bayestestr \
     r-ca \
-    r-cca \
     r-cowplot \
     r-devtools \
     r-dirichletreg \
@@ -64,10 +63,8 @@ RUN mamba install -y -c conda-forge -c bioconda \
     r-see \
     r-spacyr \
     r-sunburstr \
-    r-vowels \
     scikit-learn \
     spacy \
-    tensorflow-cpu \
     textgrid \
     tgt \
     torchaudio \
@@ -75,9 +72,9 @@ RUN mamba install -y -c conda-forge -c bioconda \
     && mamba clean -afy
     
 # Because some packages are special:
-RUN pip install arpa
+RUN pip install arpa tensorflow-cpu
 
-RUN R -e "install.packages('glossr'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())" &&\
+RUN R -e "install.packages(c('CCA', 'glossr', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())" &&\
     R -e "library(devtools); pak::pak('rezonators/rezonateR', Ncpus = parallel::detectCores())"
 
 USER $NB_USER
