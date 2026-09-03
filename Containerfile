@@ -75,7 +75,7 @@ RUN mamba install -y -c conda-forge -c bioconda \
 RUN pip install arpa tensorflow-cpu
 
 RUN R -e "install.packages(c('CCA', 'glossr', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())" &&\
-    R -e "library(devtools); pak::pak('rezonators/rezonateR', Ncpus = parallel::detectCores())"
+    R -e "pak::pak('rezonators/rezonateR')"
 
 USER $NB_USER
 
