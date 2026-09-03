@@ -38,22 +38,17 @@ RUN mamba install -y -c conda-forge -c bioconda \
     r-dirichletreg \
     r-doparallel \
     r-ellipse \
-    r-factoextra \
-    r-factominer \
     r-ggalluvial \
     r-ggally \
     r-ggbreak \
     r-ggfittext \
     r-ggforce \
-    r-ggmosaic \
-    r-ggpattern \
     r-ggplot2 \
     r-ggrepel \
     r-ggthemes \
     r-ggvenndiagram \
     r-ggwordcloud \
     r-keras \
-    r-lmertest \
     r-mclust \
     r-ordinal \
     r-plotly \
@@ -74,8 +69,8 @@ RUN mamba install -y -c conda-forge -c bioconda \
 # Because some packages are special:
 RUN pip install arpa tensorflow-cpu
 
-RUN R -e "install.packages(c('CCA', 'glossr', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())" &&\
-    R -e "pak::pak('rezonators/rezonateR')"
+RUN Rscript -e "install.packages(c('askpass', 'CCA', 'factoextra', 'factominer', 'ggmosaic', 'ggpattern', 'glossr', 'lmertest', 'vowels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())" &&\
+    Rscript -e "pak::pak('rezonators/rezonateR')"
 
 USER $NB_USER
 
